@@ -1,79 +1,133 @@
 // Task 1
-class PersonClass {
-  String? name;
-  int? age;
-  String? city;
 
-  PersonClass(this.name, this.age, this.city);
-  void printInfo() {
-    print('Name is $name');
-    print('Age is $age');
-    print('City is $city');
+class Car {
+  String brand;
+  String model;
+  int year;
+  Car(this.brand, this.model, this.year);
+  void displayInfo() {
+    print('Brand: $brand');
+    print('Model: $model');
+    print('Year: $year');
   }
 }
 
 // Task 2
-class RectangleCalculatorClass {
-  double? height;
-  double? width;
-  RectangleCalculatorClass(this.height, this.width);
-  double area() {
-    return height! * width!;
+class Student {
+  String? name;
+  int? age;
+  int? grade;
+  Student(this.name, this.age, this.grade);
+  Student.guest() {
+    name = "Guest";
+    age = -1;
+    grade = -1;
   }
-
-  double perimeter() {
-    return (height! + width!) * 2;
+  void showInfo() {
+    print("Name: $name");
+    print("Age: $age");
+    print("Grade: $grade");
   }
 }
 
 // Task 3
-class BankAccountClass {
-  String? owner;
-  double? balance;
-  BankAccountClass(this.balance, this.owner);
-  BankAccountClass.empty(this.owner) {
-    balance = 0;
-  }
-  void deposit(double amount) {
-    print(balance = balance! + amount);
+
+class BankAccount {
+  int? _balance;
+  void setBalance(balance) {
+    if (balance < 0) {
+      print('Invalid balance');
+    } else {
+      _balance = balance;
+    }
   }
 
-  void withdraw(double amount) {
-    print(balance = balance! - amount);
+  int? getBalance() {
+    return _balance;
   }
 }
 
 // Task 4
-class Student {
+class Animal {
   String? name;
-  List<double>? grades;
-  Student(this.name, this.grades);
-  double average() {
-    double sum = 0;
-    for (int i = 0; i < grades!.length; i++) {
-      sum += grades![i];
-    }
-    return sum / grades!.length;
+  Animal(this.name);
+  void makeSound() {
+    print('$name makes sound ');
   }
+}
 
-  String status() {
-    if (average() >= 60) {
-      return 'pass';
-    } else {
-      return 'fail';
-    }
+class Dog extends Animal {
+  Dog(super.name);
+  @override
+  void makeSound() {
+    print("$name: Woof!");
+  }
+}
+
+class Cat extends Animal {
+  Cat(super.name);
+  @override
+  void makeSound() {
+    print("$name: Meow!");
   }
 }
 
 // Task 5
-class Product {
-  String? name;
-  double? price;
-  bool? inStock;
-  Product(this.name, this.price, {this.inStock = true});
-  Product.outOfStock(this.name, this.price): inStock = false ;
-  @override
-  String toString() {
-    return 'name $name , price $price , inStock $inStock ';
+
+class Person {
+  String name;
+  int age;
+  Person(this.name, this.age);
+}
+
+class Employee extends Person {
+  int salary;
+  Employee(super.name, super.age, this.salary);
+  void displayInfo() {
+    print("Name: $name");
+    print("Age: $age");
+    print("Salary: $salary");
+  }
+}
+
+// Task 6
+class Book {
+  String title;
+  String author;
+  Book(this.title, this.author);
+  void showInfo() {
+    print("Book: $title");
+    print("Author: $author");
+  }
+}
+
+class BorrowedBook extends Book {
+  bool _isBorrowed = false ;
+  BorrowedBook(  super.title,  super.author);
+  void borrowBook() {
+    if (_isBorrowed ) {
+      print('This book is already borrowed.');
+    } else {
+       _isBorrowed = true;
+      print('Borrowed successfully');
+    }
+  }
+
+  void returnBook() {
+    if (!_isBorrowed){
+    print('book is available');
+    }
+    else {
+       _isBorrowed = false;
+      print("Book returned successfully.");
+    }
+  }
+
+  void getStatus() {
+    if (_isBorrowed) {
+      print("Current Status: Borrowed");
+    } else {
+      print("Current Status: Available");
+    }
   }
 }
