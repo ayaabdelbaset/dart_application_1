@@ -1,133 +1,192 @@
 // Task 1
+import 'dart:math';
 
-class Car {
-  String brand;
-  String model;
-  int year;
-  Car(this.brand, this.model, this.year);
-  void displayInfo() {
-    print('Brand: $brand');
-    print('Model: $model');
-    print('Year: $year');
+class BankAccount {
+  double _balance = 0;
+  void deposit(double money) {
+    _balance += money;
+    print('Deposited: $balance');
   }
+
+  void withdraw(double money) {
+    if (money > 0 && money <= _balance) {
+      _balance -= money;
+      print('Withdrew: $balance');
+    } else {
+      print('Withdrawal money must be positive.');
+    }
+  }
+
+  double get balance => _balance;
 }
 
 // Task 2
+
 class Student {
-  String? name;
-  int? age;
-  int? grade;
-  Student(this.name, this.age, this.grade);
-  Student.guest() {
-    name = "Guest";
-    age = -1;
-    grade = -1;
+  String? _name;
+  double? _grade;
+  set grade(double grade) {
+    if (grade >= 0 && grade <= 100) {
+      _grade = grade;
+    } else {
+      print('The value must be between 0 and 100');
+    }
   }
-  void showInfo() {
-    print("Name: $name");
-    print("Age: $age");
-    print("Grade: $grade");
-  }
+
+  String? get name => _name;
+  double? get grade => _grade;
 }
 
 // Task 3
 
-class BankAccount {
-  int? _balance;
-  void setBalance(balance) {
-    if (balance < 0) {
-      print('Invalid balance');
-    } else {
-      _balance = balance;
-    }
-  }
-
-  int? getBalance() {
-    return _balance;
+class Vechile {
+  Vechile(this.brand, this.speed);
+  String brand;
+  double speed;
+  void describe() {
+    print('Brand is : $brand');
+    print('Speed is : $speed');
   }
 }
 
-// Task 4
-class Animal {
-  String? name;
-  Animal(this.name);
-  void makeSound() {
-    print('$name makes sound ');
+class Car extends Vechile {
+  Car(super.brand, super.speed, this.doors);
+  int doors;
+  @override
+  describe() {
+    super.describe();
+    print('doors are : $doors');
   }
+}
+
+
+
+// Task 4 
+class Animal {
+  String name;
+
+  Animal(this.name);
+
 }
 
 class Dog extends Animal {
-  Dog(super.name);
+  String breed;
+
+  Dog(super.name, this.breed);
+
+}
+
+// Task 5 
+
+abstract class Shape {
+  double area();
+}
+class Rectangle extends Shape {
+  double width;
+  double height;
+  Rectangle(this.width, this.height);
+
   @override
-  void makeSound() {
-    print("$name: Woof!");
+  double area() {
+    return width * height;
+  }
+}
+class Circle extends Shape {
+  double radius;
+  Circle(this.radius);
+  @override
+  double area() {
+    return pi * radius * radius;
   }
 }
 
-class Cat extends Animal {
-  Cat(super.name);
-  @override
-  void makeSound() {
-    print("$name: Meow!");
-  }
-}
 
-// Task 5
 
-class Person {
+// Task 6 
+
+ abstract class Employee {
   String name;
-  int age;
-  Person(this.name, this.age);
-}
-
-class Employee extends Person {
-  int salary;
-  Employee(super.name, super.age, this.salary);
-  void displayInfo() {
-    print("Name: $name");
-    print("Age: $age");
-    print("Salary: $salary");
+  double salary;
+  Employee(this.name, this.salary);
+  void work();
+  void introduce() {
+    print('Name is: $name');
   }
 }
 
-// Task 6
-class Book {
-  String title;
-  String author;
-  Book(this.title, this.author);
-  void showInfo() {
-    print("Book: $title");
-    print("Author: $author");
+class Developer extends Employee {
+  Developer(super.name, super.salary);
+  @override
+  void work() {
+    print('Developer is working');
   }
 }
 
-class BorrowedBook extends Book {
-  bool _isBorrowed = false ;
-  BorrowedBook(  super.title,  super.author);
-  void borrowBook() {
-    if (_isBorrowed ) {
-      print('This book is already borrowed.');
-    } else {
-       _isBorrowed = true;
-      print('Borrowed successfully');
-    }
+
+
+// Task 7
+
+abstract class Flyable {
+  void fly();
+}
+abstract class Swimmable {
+  void swim();
+}
+class Duck implements Flyable, Swimmable {
+  @override
+  void fly() {
+    print('Duck is flying');
+  }
+  @override
+  void swim() {
+    print('Duck is swimming');
+  }
+}
+
+
+
+// Task 8
+abstract class Drawable {
+  void draw();
+  String getColor();
+}
+class Square implements Drawable {
+  @override
+  void draw() {
+    print('Drawing a square');
   }
 
-  void returnBook() {
-    if (!_isBorrowed){
-    print('book is available');
-    }
-    else {
-       _isBorrowed = false;
-      print("Book returned successfully.");
-    }
+  @override
+  String getColor() {
+    return 'Red';
   }
+}
+class Triangle implements Drawable {
+  @override
+  void draw() {
+    print('Drawing a triangle');
+  }
+  @override
+  String getColor() {
+    return 'Blue';
+  }
+}
 
-  void getStatus() {
-    if (_isBorrowed) {
-      print("Current Status: Borrowed");
-    } else {
-      print("Current Status: Available");
+
+
+// Task 9
+class Counter {
+  int _count = 0;
+  void increment() {
+    _count++;
+  }
+  void decrement() {
+    if (_count > 0) {
+      _count--;
     }
   }
+  void reset() {
+    _count = 0;
+  }
+  int get count => _count;
 }

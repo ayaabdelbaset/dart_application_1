@@ -1,41 +1,56 @@
 import 'package:dart_application_1/task_class.dart';
 
 void main() {
-  Car car1 = Car('Toyota', 'Corolla', 2022);
-  car1.displayInfo();
+    BankAccount b = BankAccount();
+   b.deposit(100);
+    b.withdraw(200);
+
+  Student s = Student();
+  s.grade = 90;
+  print(s.grade);
+  print(s.name);
+
+  Car c = Car('BMW',2000 , 6);
+  c.describe();
+
+Dog d = Dog('Max', 'German');
+  print(d.name);
+  print(d.breed);
 
 
-  Student s1 = Student('Anas', 22, 95);
-  Student s2 = Student.guest();
-  s1.showInfo();
-  s2.showInfo();
+ Rectangle r = Rectangle(5, 4);
+  Circle c = Circle(3);
+  print(r.area());
+  print(c.area());
 
 
-  BankAccount b1 = BankAccount();
-  b1.setBalance(1000);
-  print(b1.getBalance());
-   b1.setBalance(-500);
-   print(b1.getBalance());
-
-
-
-  Dog d1 = Dog('Dog');
-  d1.makeSound();
-   Cat cat = Cat('Cat');
-  cat.makeSound();
-
-
-
-  Employee e = Employee('Aya', 20, 5000);
-  e.displayInfo();
-
+  Developer d = Developer('Aya', 10000);
+  d.introduce();
+  d.work();
   
+    Duck d = Duck();
+  d.fly();
+  d.swim();
+
+Square s = Square();
+  Triangle t = Triangle();
+  s.draw();
+  print(s.getColor());
+  t.draw();
+  print(t.getColor());
 
 
-  BorrowedBook book = BorrowedBook("Flutter Basics", "John");
-  book.showInfo();
-  book.borrowBook();
-  book.borrowBook();
-  book.returnBook();
-  book.getStatus();
+ Counter c = Counter();
+  c.increment();
+  c.increment();
+  print(c.count);
+  c.decrement();
+  print(c.count);
+  c.reset();
+  print(c.count);
+
+
+
+
+
 }
